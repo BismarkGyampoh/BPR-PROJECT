@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f8f5ee;
+  --surface: #ffffff;
+  --surface-muted: #f0eee7;
+  --ink: #1e2824;
+  --muted: #53615a;
+  --primary: #007a55;
+  --primary-deep: #00563b;
+  --accent: #ed9121;
+  --line: #e5e1d7;
+  --ops-canvas: #f3f5f2;
+  --background: var(--canvas);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-accent: var(--accent);
+  --color-line: var(--line);
+  --color-ops-canvas: var(--ops-canvas);
+  --font-sans: var(--font-source-sans), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-lora), Georgia, serif;
+  --font-mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--canvas);
+  }
+
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-source-sans), Arial, Helvetica, sans-serif;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 18%, transparent);
+    color: var(--primary-deep);
+  }
+
+  a,
+  button,
+  input,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink shadow-xs transition placeholder:text-muted/70 focus:border-primary focus:outline-hidden focus:ring-3 focus:ring-primary/15;
+  }
+
+  .site-panel {
+    @apply rounded-3xl border border-line bg-surface shadow-sm;
+  }
+
+  .eyebrow {
+    @apply text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .status-pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em];
+  }
+
+  .ops-table {
+    @apply min-w-full border-collapse text-sm;
+  }
+
+  .ops-table th {
+    @apply whitespace-nowrap border-b border-line bg-ops-canvas px-4 py-3 text-left text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+
+  .ops-table td {
+    @apply border-b border-line px-4 py-3 align-middle;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
